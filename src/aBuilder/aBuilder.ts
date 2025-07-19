@@ -1,5 +1,6 @@
 import { pathgen } from 'object-path-generator';
-import { set, get } from 'lodash';
+import set from 'lodash.set';
+import get from 'lodash.get';
 
 // Utility types for property name pattern detection
 type HasCapitalFirst<S extends string> = S extends `${infer First}${infer _Rest}`

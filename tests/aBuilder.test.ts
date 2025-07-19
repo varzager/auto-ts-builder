@@ -1,4 +1,4 @@
-import { aBuilder } from '../src/aBuilder';
+import { aBuilder } from '../dist/aBuilder';
 
 describe('aBuilder', () => {
     it('should support an interface a simple interface', () => {
