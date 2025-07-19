@@ -1,1 +1,24 @@
-node_modules
+# Node
+node_modules/
+dist/
+*.log
+
+# Env & misc
+.env
+.DS_Store
+
+# IDEs
+.vscode/
+.idea/
+
+# Test output
+coverage/
+
+# Build tools
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state.yml
+.pnp.*
+
+# Optional: ignore local lockfile (if you use lockfile in CI only)
+# yarn.lock
