@@ -1,7 +1,7 @@
 {
   "name": "auto-ts-builder",
   "description": "Runtime TypeScript builder utility for interfaces and types with fluent chaining",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "license": "MIT",
   "author": {
     "name": "Guy Wargzaer",
