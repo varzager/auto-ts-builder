@@ -197,7 +197,7 @@ console.log(personBuilder.build());
 
 ### `aBuilder<T>()`
 
-Creates a builder factory for objects of type `T`.
+Creates a builder factory for objects of type `T` - can be extended with helpers. helpers with same name will override the default builder methods. 
 
 #### Generic Types
 
@@ -213,7 +213,8 @@ A function that takes the default object and returns a builder with methods for 
 
 ### `aBuilderHelper<T>()`
 
-Creates a builder factory with support for custom helper methods.
+Creates a builder factory which exports only the helper methods.
+the internal implementation will only be accessible inside the helpers function.
 
 #### Generic Types
 
@@ -224,6 +225,38 @@ Creates a builder factory with support for custom helper methods.
 A function that takes:
 1. The default object of type `T`.
 2. An optional function that receives a builder and returns an object with custom helpers.
+
+-----
+
+#### `Helpers` Function Behavior
+
+```typescript
+helpers?: (builder: Builder) => ({...});
+```
+
+- **Important**: All helper functions ignore their own return values and always return the root builder for chaining
+- The `builder` parameter provided to the helper function:
+  - Contains only internal builder methods (not other helper methods)
+
+#### Example Helper Function Usage
+
+```typescript
+// Example of proxying an existing method with enhanced functionality
+withName: (firstName, lastName) => builder.withName(`${firstName} ${lastName}`),
+
+// Example of a helper that uses multiple internal methods
+withAddress: (street, city, zip) => {
+  builder.address.withStreet(street);
+  builder.address.withCity(city);
+  builder.address.withZip(zip);
+  // No need to return anything - always returns the root builder
+},
+
+// Example of nested helpers
+address: {
+  withPrimary: (address) => builder.address.withType('primary').withValue(address)
+}
+```
 
 The result is a builder with all standard methods plus the custom helpers.
 
